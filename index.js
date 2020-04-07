@@ -44,7 +44,6 @@ module.exports = (time_in, time_out, hourly = {}, filler = 60) => {
     if (hourly[output.date][output.hour] < output.time) {
       hourly[output.date][output.hour] = output.time;
     }
-    console.log(output);
 
     return output;
   });
