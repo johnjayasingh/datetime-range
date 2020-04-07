@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-module.exports = (time_in, time_out, obj_output = {}) => {
+module.exports = (time_in, time_out, hourly = {}) => {
   const dates = [];
   const DATE_FORMAT = 'YYYY-MM-DD HH'
 
@@ -20,11 +20,11 @@ module.exports = (time_in, time_out, obj_output = {}) => {
       date: moment(date).format('YYYY-MM-DD'),
       hour: moment(date).format('HH:mm'),
     };
-    if (!obj_output[output.date]) {
-      obj_output[output.date] = {};
+    if (!hourly[output.date]) {
+      hourly[output.date] = {};
     }
-    if (!obj_output[output.date][output.hour]) {
-      obj_output[output.date][output.hour] = 0;
+    if (!hourly[output.date][output.hour]) {
+      hourly[output.date][output.hour] = 0;
     }
 
     if (index === 0) {
@@ -41,15 +41,28 @@ module.exports = (time_in, time_out, obj_output = {}) => {
     }
     output.time = Math.round(output.time);
 
-    if (obj_output[output.date][output.hour] < output.time) {
-      obj_output[output.date][output.hour] = output.time;
+    if (hourly[output.date][output.hour] < output.time) {
+      hourly[output.date][output.hour] = output.time;
     }
 
     return output;
   });
+
+  const daily = {}
+
+  Object.keys(hourly).forEach(date => {
+    if (!daily[date]) {
+      daily[date] = 0;
+    }
+    Object.keys(hourly[date]).forEach(hour => {
+      daily[date] += hourly[date][hour];
+    })
+  })
+
   return {
-    array: output,
-    object: obj_output
+    output,
+    hourly,
+    daily
   };
 
 };
