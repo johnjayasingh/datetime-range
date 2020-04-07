@@ -27,12 +27,12 @@ module.exports = (time_in, time_out, hourly = {}, filler = 60) => {
       hourly[output.date][output.hour] = 0;
     }
 
-    if (index === 0) {
+    if (index === 0 && filler === 60) {
       const endOf = moment(time_in).endOf('hour');
       const time = moment.duration(endOf.diff(moment(time_in)));
       output.time = time.asMinutes();
     }
-    else if (index === arr.length - 1) {
+    else if (index === arr.length - 1  && filler === 60) {
       const startOf = moment(time_out).startOf('hour');
       const time = moment.duration(moment(time_out).diff(startOf));
       output.time = time.asMinutes();
@@ -44,6 +44,7 @@ module.exports = (time_in, time_out, hourly = {}, filler = 60) => {
     if (hourly[output.date][output.hour] < output.time) {
       hourly[output.date][output.hour] = output.time;
     }
+    console.log(output);
 
     return output;
   });
