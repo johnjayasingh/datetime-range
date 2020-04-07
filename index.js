@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-module.exports = (time_in, time_out, hourly = {}) => {
+module.exports = (time_in, time_out, hourly = {}, filler = 60) => {
   const dates = [];
   const DATE_FORMAT = 'YYYY-MM-DD HH'
 
@@ -37,7 +37,7 @@ module.exports = (time_in, time_out, hourly = {}) => {
       const time = moment.duration(moment(time_out).diff(startOf));
       output.time = time.asMinutes();
     } else {
-      output.time = 60;
+      output.time = filler;
     }
     output.time = Math.round(output.time);
 
