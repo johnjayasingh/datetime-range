@@ -1,0 +1,33 @@
+{
+  "name": "datetime-range",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/johnjayasingh/datetime-range.git"
+  },
+  "keywords": [
+    "timeseries",
+    "momentjs",
+    "moment",
+    "time",
+    "range",
+    "date",
+    "time",
+    "time",
+    "series"
+  ],
+  "author": "John Jayasingh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnjayasingh/datetime-range/issues"
+  },
+  "homepage": "https://github.com/johnjayasingh/datetime-range#readme",
+  "dependencies": {
+    "moment": "^2.24.0"
+  }
+}
